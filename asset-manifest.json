@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/phone-beautifier/static/css/main.2b7354b6.css",
+    "main.js": "/phone-beautifier/static/js/main.c14b20dd.js",
+    "index.html": "/phone-beautifier/index.html",
+    "main.2b7354b6.css.map": "/phone-beautifier/static/css/main.2b7354b6.css.map",
+    "main.c14b20dd.js.map": "/phone-beautifier/static/js/main.c14b20dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b7354b6.css",
+    "static/js/main.c14b20dd.js"
+  ]
+}
