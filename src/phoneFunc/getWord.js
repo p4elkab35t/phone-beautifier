@@ -59,8 +59,9 @@ const findWord = (phoneNumber) => {
     };
     const phoneNumberArr = phoneNumber.split('');
     var phoneWordArr = [];
-    const currentUrl = window.location.href;
-    const localFile = `${currentUrl}/wordsDB/${phoneNumber.length - 1}length.txt`;
+    var currentUrl = window.location.href;
+    if (currentUrl[currentUrl.length - 1] !== "/") currentUrl += "/";
+    const localFile = `${currentUrl}wordsDB/${phoneNumber.length - 1}length.txt`;
     var wordArr = [];
     let wordList = syncFetch(localFile);
     wordArr = wordList.split('\n');
