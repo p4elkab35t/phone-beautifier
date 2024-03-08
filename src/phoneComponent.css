@@ -1,0 +1,66 @@
+/* Center the container div */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color);
+}
+
+/* Define a variable for a less colorful palette */
+:root {
+    --primary-color: #f6f7eb;
+    --secondary-color: #e94f37;
+    --accent-color: #393e41;
+}
+
+h1 {
+    padding: 20px;
+    color: var(--accent-color);
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+/* Style the beautiful telephone input */
+input[type="tel"] {
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 26px;
+    /* font-weight: bold; */
+    text-align: center;
+    color: var(--secondary-color);
+    background-color: var(--accent-color);
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+p {
+    color: var(--secondary-color);
+    font-size: 26px;
+    /* font-weight: bold; */
+    padding: 20px;
+}
