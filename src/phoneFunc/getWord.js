@@ -46,7 +46,8 @@ const findWord = async (phoneNumber) => {
     };
     const phoneNumberArr = phoneNumber.split('');
     var phoneWordArr = [];
-    const localFile = `wordsDB/${phoneNumber.length - 1}length.txt`;
+    const currentUrl = window.location.href;
+    const localFile = `${currentUrl}wordsDB/${phoneNumber.length - 1}length.txt`;
     var wordArr = [];
     return fetch(localFile)
         .then(response => response.text())
