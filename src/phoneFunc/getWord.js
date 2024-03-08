@@ -1,5 +1,18 @@
 
-const iterateFinding = async (phoneNumber) => {
+function syncFetch(url) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.send(null);
+    console.log("fetching");
+    if (xhr.status === 200) {
+        console.log(xhr.responseText);
+        return xhr.responseText;
+    } else {
+        throw new Error('Request failed: ' + xhr.statusText);
+    }
+}
+
+const iterateFinding = (phoneNumber) => {
     var phoneStart = '';
     var phoneEnd = '';
     var phonePart = '';
@@ -11,7 +24,7 @@ const iterateFinding = async (phoneNumber) => {
             phonePart = phoneNumber.slice(j, j + i + 1);
             phoneStart = phoneNumber.slice(0, j);
             phoneEnd = phoneNumber.slice(j + i + 1);
-            phoneWord = await findWord(phonePart);
+            phoneWord = findWord(phonePart);
             if (phoneWord.length > 0) {
                 phoneWordObj.wordLists[i].push([phoneStart, phoneWord, phoneEnd]);
             };
@@ -32,7 +45,7 @@ const iterateFinding = async (phoneNumber) => {
 };
 
 
-const findWord = async (phoneNumber) => {
+const findWord = (phoneNumber) => {
     const letterBox = {
         "1": [""],
         "2": ["a", "b", "c"],
@@ -47,28 +60,46 @@ const findWord = async (phoneNumber) => {
     const phoneNumberArr = phoneNumber.split('');
     var phoneWordArr = [];
     const currentUrl = window.location.href;
-    const localFile = `${currentUrl}wordsDB/${phoneNumber.length - 1}length.txt`;
+    const localFile = `${currentUrl}/wordsDB/${phoneNumber.length - 1}length.txt`;
     var wordArr = [];
-    return fetch(localFile)
-        .then(response => response.text())
-        .then(text => {
-            wordArr = text.split('\n');
-            for (let i = 0; i < wordArr.length; i++) {
-                let word = wordArr[i].slice(0, -1);
-                if (word.length === phoneNumber.length) {
-                    let match = true;
-                    for (let j = 0; j < word.length; j++) {
-                        if (!letterBox[phoneNumberArr[j]].includes(word[j])) {
-                            match = false;
-                            break;
-                        }
-                    }
-                    if (match) {
-                        phoneWordArr.push(word);
-                    }
+    let wordList = syncFetch(localFile);
+    wordArr = wordList.split('\n');
+    for (let i = 0; i < wordArr.length; i++) {
+        let word = wordArr[i].slice(0, -1);
+        if (word.length === phoneNumber.length) {
+            let match = true;
+            for (let j = 0; j < word.length; j++) {
+                if (!letterBox[phoneNumberArr[j]].includes(word[j])) {
+                    match = false;
+                    break;
                 }
-            };
-            return phoneWordArr;
-        });
+            }
+            if (match) {
+                phoneWordArr.push(word);
+            }
+        }
+    };
+    return phoneWordArr;
+    // return fetch(localFile)
+    //     .then(response => response.text())
+    //     .then(text => {
+    //         wordArr = text.split('\n');
+    //         for (let i = 0; i < wordArr.length; i++) {
+    //             let word = wordArr[i].slice(0, -1);
+    //             if (word.length === phoneNumber.length) {
+    //                 let match = true;
+    //                 for (let j = 0; j < word.length; j++) {
+    //                     if (!letterBox[phoneNumberArr[j]].includes(word[j])) {
+    //                         match = false;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (match) {
+    //                     phoneWordArr.push(word);
+    //                 }
+    //             }
+    //         };
+    //         return phoneWordArr;
+    //     });
 };
 export { findWord, iterateFinding };

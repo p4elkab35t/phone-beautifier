@@ -22,10 +22,12 @@ export default function PhoneComponent() {
     useEffect(() => {
         if (phoneNumber.length === 0) return setWordParser('');
         let onlyPhoneNumber = phoneNumber.replace(/\D/g, "");
-        iterateFinding(onlyPhoneNumber).then(res => {
-            console.log(res);
-            setWordParser(res + onlyPhoneNumber.slice(res.length));
-        });
+        let resultPhoneWord = iterateFinding(onlyPhoneNumber);
+        setWordParser(resultPhoneWord);
+        // iterateFinding(onlyPhoneNumber).then(res => {
+        //     console.log(res);
+        //     setWordParser(res + onlyPhoneNumber.slice(res.length));
+        // });
     }, [phoneNumber]);
 
     const setWordParser = (wordObj) => {
