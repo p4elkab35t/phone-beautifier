@@ -20,12 +20,22 @@ export default function PhoneComponent() {
     };
 
     useEffect(() => {
-        if (phoneNumber.length === 0) return setWordParser('');
-        let onlyPhoneNumber = phoneNumber.replace(/\D/g, "");
-        iterateFinding(onlyPhoneNumber).then(res => {
-            console.log(res);
-            setWordParser(res + onlyPhoneNumber.slice(res.length));
-        });
+        const fetchData = async () => {
+            if (phoneNumber.length === 0) return setWord('');
+            const onlyPhoneNumber = phoneNumber.replace(/\D/g, "");
+            try {
+                const resultPhoneWord = await iterateFinding(onlyPhoneNumber);
+                setWordParser(resultPhoneWord);
+            } catch (error) {
+                console.error('Error fetching phone word:', error);
+                // Handle the error as needed, e.g., setWord('Error occurred');
+            }
+            // iterateFinding(onlyPhoneNumber).then(res => {
+            //     console.log(res);
+            //     setWordParser(res + onlyPhoneNumber.slice(res.length));
+            // });
+        };
+        fetchData();
     }, [phoneNumber]);
 
     const setWordParser = (wordObj) => {
