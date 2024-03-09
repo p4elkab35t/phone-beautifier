@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/phone-beautifier/static/css/main.2b7354b6.css",
-    "main.js": "/phone-beautifier/static/js/main.d512f963.js",
+    "main.js": "/phone-beautifier/static/js/main.f8fab1fd.js",
     "index.html": "/phone-beautifier/index.html",
     "main.2b7354b6.css.map": "/phone-beautifier/static/css/main.2b7354b6.css.map",
-    "main.d512f963.js.map": "/phone-beautifier/static/js/main.d512f963.js.map"
+    "main.f8fab1fd.js.map": "/phone-beautifier/static/js/main.f8fab1fd.js.map"
   },
   "entrypoints": [
     "static/css/main.2b7354b6.css",
-    "static/js/main.d512f963.js"
+    "static/js/main.f8fab1fd.js"
   ]
 }
