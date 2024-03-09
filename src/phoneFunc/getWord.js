@@ -102,7 +102,7 @@ const findWord = async (phoneNumber) => {
                 const wordArr = text.split('\n');
                 const phoneWordArr = [];
                 for (let i = 0; i < wordArr.length; i++) {
-                    const word = wordArr[i].slice(0, -1);
+                    const word = wordArr[i];
                     if (word.length === phoneNumber.length) {
                         let match = true;
                         for (let j = 0; j < word.length; j++) {
